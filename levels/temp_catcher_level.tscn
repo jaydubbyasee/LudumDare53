@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjok0245hx5tq"]
+[gd_scene load_steps=6 format=3 uid="uid://bjok0245hx5tq"]
 
 [ext_resource type="Texture2D" uid="uid://dyjwrctdypl5c" path="res://images/hospitalBackground.jpg" id="2_24pg1"]
 [ext_resource type="PackedScene" uid="uid://dg00w7qdxd0ys" path="res://prefabs/catcher/Catcher.tscn" id="3_50juv"]
 [ext_resource type="PackedScene" uid="uid://bpulqod72iti2" path="res://prefabs/GameManager/GameManager.tscn" id="4_4352m"]
+[ext_resource type="PackedScene" uid="uid://cmf1xdwq3aeah" path="res://prefabs/launcher/launcher.tscn" id="4_rbjhc"]
 [ext_resource type="PackedScene" uid="uid://c3e7nmlar4jaq" path="res://prefabs/baby/baby.tscn" id="4_vf38y"]
 
 [node name="TempCatcherLevel" type="Node2D"]
@@ -24,3 +25,6 @@ position = Vector2(1420, 652)
 
 [node name="Baby" parent="." instance=ExtResource("4_vf38y")]
 position = Vector2(1252, -72)
+
+[node name="Launcher" parent="." instance=ExtResource("4_rbjhc")]
+_babyScene = ExtResource("4_vf38y")
