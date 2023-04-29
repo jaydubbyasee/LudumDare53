@@ -49,7 +49,7 @@ public partial class Launcher : Node2D
 	[Export]
 	private PackedScene _babyScene;
 
-	private Baby launchedBaby;
+
 
 	public override void _Ready()
 	{
@@ -65,6 +65,11 @@ public partial class Launcher : Node2D
 
 	public override void _Process(double delta)
 	{
+		if(GameManager.Instance.CurrentState == GameManager.GameState.End)
+		{
+			return;
+		}
+
 		_launchAngleRadial.Value = LaunchAngle;
 		_powerBar.Value = LaunchPower;
 		switch (CurrentLaunchState)
@@ -72,19 +77,9 @@ public partial class Launcher : Node2D
 			case LaunchState.LAUNCHED:
 				if (GameManager.Instance.CurrentState == GameManager.GameState.Play)
 				{
-					if (!IsInstanceValid(launchedBaby))
-					{
 						CurrentLaunchState = LaunchState.ANGLE_SELECT;
-					}else
-					{
-						GD.Print("Waiting for catch", launchedBaby);
-					}
-
-				} else
-				{
-					return;
 				}
-				break;
+			break;
 		}
 	}
 
@@ -140,7 +135,7 @@ public partial class Launcher : Node2D
 					baby.LinearVelocity = launchVector;
 
 					EmitSignal(SignalName.OnBabyLaunched, baby);
-					launchedBaby = baby;
+					GameManager.Instance.LaunchedBaby = baby;
 				}
 				
 				break;

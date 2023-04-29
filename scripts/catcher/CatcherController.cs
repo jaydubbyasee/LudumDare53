@@ -9,17 +9,16 @@ public partial class CatcherController : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		////GD.Print(GetTree().CurrentScene.FindChild("GameManager", true));
-		//gameManager = GetTree().CurrentScene.FindChild("GameManager", true) as GameManager;
-		//if (gameManager == null)
-		//{
-		//	throw new Exception("Cannot find GameManager at /");
-		//}
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if(GameManager.Instance.CurrentState == GameManager.GameState.End)
+		{
+			return;
+		}
 		if (Input.IsActionPressed("MoveRight"))
 		{
 			GlobalPosition = new Vector2(GlobalPosition.X + (moveSpeed * Convert.ToSingle(delta)), GlobalPosition.Y);

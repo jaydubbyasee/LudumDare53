@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://66y5d0u1an0k"]
+[gd_scene load_steps=7 format=3 uid="uid://66y5d0u1an0k"]
 
 [ext_resource type="Texture2D" uid="uid://dyjwrctdypl5c" path="res://images/hospitalBackground.jpg" id="1_jc2qu"]
 [ext_resource type="PackedScene" uid="uid://dg00w7qdxd0ys" path="res://prefabs/catcher/Catcher.tscn" id="2_v8iba"]
 [ext_resource type="PackedScene" uid="uid://bpulqod72iti2" path="res://prefabs/GameManager/GameManager.tscn" id="3_skxry"]
 [ext_resource type="PackedScene" uid="uid://cmf1xdwq3aeah" path="res://prefabs/launcher/launcher.tscn" id="4_n0bm5"]
 [ext_resource type="PackedScene" uid="uid://c6ujepqdfe283" path="res://prefabs/baby/baby.tscn" id="5_j0cpn"]
+[ext_resource type="PackedScene" uid="uid://bcidrduyygof8" path="res://prefabs/Boundaries/Boundaries.tscn" id="6_afdqn"]
 
 [node name="JmackeyTempLevel" type="Node2D"]
 position = Vector2(310, 207)
@@ -26,3 +27,6 @@ position = Vector2(1420, 652)
 [node name="Launcher" parent="." instance=ExtResource("4_n0bm5")]
 position = Vector2(198, 446)
 _babyScene = ExtResource("5_j0cpn")
+
+[node name="Boundaries" parent="." instance=ExtResource("6_afdqn")]
+position = Vector2(-298, 865)

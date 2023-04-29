@@ -13,12 +13,14 @@ bg_color = Color(0.196078, 0.635294, 0.796078, 1)
 corner_radius_top_left = 100
 corner_radius_bottom_right = 100
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "GameOverPanel")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "GameOverPanel", "RestartButton", "ExitButton")]
 script = ExtResource("1_o48vh")
 BabyCount = 2
 ScoreValueLabel = NodePath("UI/ScorePanel/ScoreContainer/Score/ScoreValue")
 BabyCountLabel = NodePath("UI/ScorePanel/ScoreContainer/Baby/BabyValueLabel")
 GameOverPanel = NodePath("UI/GameOverPanel")
+RestartButton = NodePath("UI/GameOverPanel/GameOverContainer/HBoxContainer/RestartButton")
+ExitButton = NodePath("UI/GameOverPanel/GameOverContainer/HBoxContainer/ExitButton")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -77,8 +79,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kjwmb")
 
-[node name="GameOverLabel" type="Label" parent="UI/GameOverPanel"]
+[node name="GameOverContainer" type="VBoxContainer" parent="UI/GameOverPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameOverLabel" type="Label" parent="UI/GameOverPanel/GameOverContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "GAME OVER!"
 label_settings = ExtResource("2_wusxx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/GameOverPanel/GameOverContainer"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="UI/GameOverPanel/GameOverContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "RESTART"
+
+[node name="ExitButton" type="Button" parent="UI/GameOverPanel/GameOverContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "EXIT"
