@@ -11,9 +11,7 @@ config_version=5
 [application]
 
 config/name="LudumDare53"
-
-run/main_scene="res://prefabs/launcher/launcher.tscn"
-
+run/main_scene="res://levels/temp_catcher_level.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
