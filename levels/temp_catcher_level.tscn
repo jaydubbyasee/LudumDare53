@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjok0245hx5tq"]
+
+[ext_resource type="PackedScene" uid="uid://dg00w7qdxd0ys" path="res://prefabs/catcher/catcher.tscn" id="1_ecxtl"]
+[ext_resource type="Texture2D" uid="uid://dyjwrctdypl5c" path="res://images/hospitalBackground.jpg" id="2_24pg1"]
+[ext_resource type="PackedScene" uid="uid://blqg7ji5473pk" path="res://prefabs/baby/baby.tscn" id="3_n251w"]
+
+[node name="TempCatcherLevel" type="Node2D"]
+position = Vector2(579, 345)
+
+[node name="catcher" parent="." instance=ExtResource("1_ecxtl")]
+position = Vector2(299, 123)
+moveSpeed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.447, 1.447)
+texture = ExtResource("2_24pg1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="baby" parent="." instance=ExtResource("3_n251w")]
+position = Vector2(-67, -270)
