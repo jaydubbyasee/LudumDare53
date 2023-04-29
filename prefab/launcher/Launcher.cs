@@ -26,7 +26,8 @@ public partial class Launcher : Node2D
 	public float MinLaunchAngle { get; set; } = 0;
 	private int _angleDirection = 1;
 
-	[Export] public float LaunchPowerSelectSpeed { get; set; } = 30.0f;
+	[Export]
+	public float LaunchPowerSelectSpeed { get; set; } = 30.0f;
 	
 	[Export]
 	public float LaunchPower { get; set; }
