@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmf1xdwq3aeah"]
+
+[ext_resource type="Script" path="res://scripts/launcher/Launcher.cs" id="1_pfopx"]
+[ext_resource type="PackedScene" uid="uid://7hn7t0u655yo" path="res://ui/launch_angle_radial.tscn" id="2_obrbj"]
+[ext_resource type="PackedScene" uid="uid://cmsr24xcn8uyc" path="res://ui/power_progress_bar.tscn" id="3_3c4yb"]
+
+[node name="Launcher" type="Node2D"]
+script = ExtResource("1_pfopx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LaunchAngleRadial" parent="." instance=ExtResource("2_obrbj")]
+offset_left = -382.0
+
+[node name="PowerBar" parent="." instance=ExtResource("3_3c4yb")]
+offset_left = -128.0
+offset_top = 197.0
+offset_right = 128.0
+offset_bottom = 237.0
