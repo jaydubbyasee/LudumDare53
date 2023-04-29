@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hn7t0u655yo"]
+
+[ext_resource type="Texture2D" uid="uid://0r4n77vd6vls" path="res://sprites/radial_over.png" id="1_1vbxy"]
+[ext_resource type="Texture2D" uid="uid://dpct2fgwokqun" path="res://sprites/radial_progress.png" id="2_tgwwr"]
+
+[node name="LaunchAngleRadial" type="TextureProgressBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 35.0
+fill_mode = 5
+texture_over = ExtResource("1_1vbxy")
+texture_progress = ExtResource("2_tgwwr")
+texture_progress_offset = Vector2(2.08165e-12, 2.08165e-12)
+radial_initial_angle = 90.0
+radial_fill_degrees = 90.0
+radial_center_offset = Vector2(-100, 100)

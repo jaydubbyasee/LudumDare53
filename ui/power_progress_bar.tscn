@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmsr24xcn8uyc"]
+
+[ext_resource type="Texture2D" uid="uid://cvnwo2vot5vjy" path="res://sprites/power_bar_over.png" id="1_t6t1h"]
+[ext_resource type="Texture2D" uid="uid://b36nhlvn5i3wk" path="res://sprites/power_bar_progress.png" id="2_xckow"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 20.0
+texture_over = ExtResource("1_t6t1h")
+texture_progress = ExtResource("2_xckow")

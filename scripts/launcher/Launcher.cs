@@ -1,8 +1,10 @@
 using Godot;
-using System;
 
 public partial class Launcher : Node2D
 {
+	private TextureProgressBar _launchAngleRadial;
+	private TextureProgressBar _powerBar;
+
 	public enum LaunchState
 	{
 		ANGLE_SELECT,
@@ -36,12 +38,30 @@ public partial class Launcher : Node2D
 	public float MinLaunchPower { get; set; }
 
 	[Export]
-	public float MaxLaunchPower { get; set; } = 10000;
+	public float MaxLaunchPower { get; set; } = 100;
 
 	private int _powerDirection = 1;
 	
 	[Signal]
 	public delegate void OnBabyLaunchedEventHandler();
+
+	public override void _Ready()
+	{
+		_launchAngleRadial = GetNode<TextureProgressBar>("LaunchAngleRadial");
+		_launchAngleRadial.MinValue = MinLaunchAngle;
+		_launchAngleRadial.MaxValue = MaxLaunchAngle;
+
+		_powerBar = GetNode<TextureProgressBar>("PowerBar");
+		_powerBar.MinValue = MinLaunchPower;
+		_powerBar.MaxValue = MaxLaunchPower;
+		_powerBar.Hide();
+	}
+
+	public override void _Process(double delta)
+	{
+		_launchAngleRadial.Value = LaunchAngle;
+		_powerBar.Value = LaunchPower;
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
@@ -55,7 +75,7 @@ public partial class Launcher : Node2D
 				if (LaunchAngle > MaxLaunchAngle || LaunchAngle < MinLaunchAngle)
 				{
 					// Clamp to avoid going beyond ranges
-					Mathf.Clamp(LaunchAngle, MinLaunchAngle, MaxLaunchAngle);
+					LaunchAngle = Mathf.Clamp(LaunchAngle, MinLaunchAngle, MaxLaunchAngle);
 					// Toggle the increment direction
 					_angleDirection *= -1;
 				}
@@ -67,15 +87,16 @@ public partial class Launcher : Node2D
 					GD.Print($"Angle Selected: {LaunchAngle}");
 					GD.Print("accept");
 					CurrentLaunchState = LaunchState.POWER_SELECT;
+					_powerBar.Show();
 				}
 				break;
 			case LaunchState.POWER_SELECT:
-				GD.Print($"Angle: {LaunchPower}");
+				GD.Print($"Power: {LaunchPower}");
 				LaunchPower += (float)(delta * LaunchPowerSelectSpeed * _powerDirection);
-				if (LaunchPower > MaxLaunchPower || LaunchAngle < MinLaunchPower)
+				if (LaunchPower > MaxLaunchPower || LaunchPower < MinLaunchPower)
 				{
 					// Clamp to avoid going beyond ranges
-					Mathf.Clamp(LaunchPower, MinLaunchPower, MaxLaunchPower);
+					LaunchPower = Mathf.Clamp(LaunchPower, MinLaunchPower, MaxLaunchPower);
 					// Toggle increment direction
 					_powerDirection *= -1;
 				}
@@ -90,7 +111,6 @@ public partial class Launcher : Node2D
 
 					var launchVector = GetBabyLaunchVector();
 					// TODO: instantiate babby, and set launch vector
-					
 					EmitSignal(SignalName.OnBabyLaunched);
 				}
 				

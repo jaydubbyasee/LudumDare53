@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgkf33hvlli6g"]
-
-[ext_resource type="Script" path="res://prefab/launcher/Launcher.cs" id="1_jnojo"]
-
-[node name="Launcher" type="Node2D"]
-script = ExtResource("1_jnojo")
-
-[node name="Camera2D" type="Camera2D" parent="."]
