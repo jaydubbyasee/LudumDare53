@@ -49,6 +49,8 @@ public partial class Launcher : Node2D
 	[Export]
 	private PackedScene _babyScene;
 
+	private Baby launchedBaby;
+
 	public override void _Ready()
 	{
 		_launchAngleRadial = GetNode<TextureProgressBar>("LaunchAngleRadial");
@@ -65,6 +67,25 @@ public partial class Launcher : Node2D
 	{
 		_launchAngleRadial.Value = LaunchAngle;
 		_powerBar.Value = LaunchPower;
+		switch (CurrentLaunchState)
+		{
+			case LaunchState.LAUNCHED:
+				if (GameManager.Instance.CurrentState == GameManager.GameState.Play)
+				{
+					if (!IsInstanceValid(launchedBaby))
+					{
+						CurrentLaunchState = LaunchState.ANGLE_SELECT;
+					}else
+					{
+						GD.Print("Waiting for catch", launchedBaby);
+					}
+
+				} else
+				{
+					return;
+				}
+				break;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,7 +94,7 @@ public partial class Launcher : Node2D
 		switch (CurrentLaunchState)
 		{
 			case LaunchState.ANGLE_SELECT:
-				GD.Print($"Angle: {LaunchAngle}");
+				//GD.Print($"Angle: {LaunchAngle}");
 				LaunchAngle += (float)(delta * AngleSelectSpeed * _angleDirection);
 				// Toggle angle direction
 				if (LaunchAngle > MaxLaunchAngle || LaunchAngle < MinLaunchAngle)
@@ -95,7 +116,7 @@ public partial class Launcher : Node2D
 				}
 				break;
 			case LaunchState.POWER_SELECT:
-				GD.Print($"Power: {LaunchPower}");
+				//GD.Print($"Power: {LaunchPower}");
 				LaunchPower += (float)(delta * LaunchPowerSelectSpeed * _powerDirection);
 				if (LaunchPower > MaxLaunchPower || LaunchPower < MinLaunchPower)
 				{
@@ -112,18 +133,23 @@ public partial class Launcher : Node2D
 					CurrentLaunchState = LaunchState.LAUNCHED;
 					GD.Print($"Power Selected: {LaunchPower}");
 					GD.Print("LAUNCHING BABY");
-
+					GameManager.Instance.BabyCount -= 1;
 					var launchVector = GetBabyLaunchVector();
 					var baby = _babyScene.Instantiate<Baby>();
 					GetParent().AddChild(baby);
 					baby.LinearVelocity = launchVector;
 
 					EmitSignal(SignalName.OnBabyLaunched, baby);
+					launchedBaby = baby;
 				}
 				
 				break;
 			case LaunchState.LAUNCHED:
 				// no-op
+				LaunchAngle = 0;
+				LaunchPower = 0;
+				_powerBar.Hide();
+
 				break;
 		}
 	}
