@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Launcher : Node2D
@@ -44,6 +45,9 @@ public partial class Launcher : Node2D
 	
 	[Signal]
 	public delegate void OnBabyLaunchedEventHandler();
+
+	[Export()]
+	private PackedScene BabyScene;
 
 	public override void _Ready()
 	{
@@ -112,6 +116,9 @@ public partial class Launcher : Node2D
 					var launchVector = GetBabyLaunchVector();
 					// TODO: instantiate babby, and set launch vector
 					EmitSignal(SignalName.OnBabyLaunched);
+					var baby = BabyScene.Instantiate<Baby>();
+					GetParent().AddChild(baby);
+					baby.LinearVelocity = launchVector;
 				}
 				
 				break;
@@ -123,6 +130,6 @@ public partial class Launcher : Node2D
 
 	public Vector2 GetBabyLaunchVector()
 	{
-		return Vector2.Right.Rotated(LaunchAngle) * LaunchPower;	
+		return Vector2.Right.Rotated(-Mathf.DegToRad(LaunchAngle)) * LaunchPower * 20;	
 	}
 }
