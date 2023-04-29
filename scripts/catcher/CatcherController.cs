@@ -14,12 +14,10 @@ public partial class CatcherController : Node2D
 	{
 		if (Input.IsActionPressed("MoveRight"))
 		{
-			GD.Print("Moving Right");
 			GlobalPosition = new Vector2(GlobalPosition.X + (moveSpeed * Convert.ToSingle(delta)), GlobalPosition.Y);
 		}
 		if (Input.IsActionPressed("MoveLeft"))
 		{
-			GD.Print("Moving Left");
 			GlobalPosition = new Vector2(GlobalPosition.X - (moveSpeed * Convert.ToSingle(delta)), GlobalPosition.Y);
 		}
 	}
@@ -27,6 +25,10 @@ public partial class CatcherController : Node2D
 	private void BodyEntered(Node2D body)
 	{
 		GD.Print("Body entered the basket!");
+		if (body.GetGroups().Contains("Baby"))
+		{
+			GD.Print("And it was a baby!");
+		}
 	}
 }
 

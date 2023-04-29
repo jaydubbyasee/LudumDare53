@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://dg00w7qdxd0ys"]
 
-[ext_resource type="Script" path="res://scripts/catcher/CatcherController.cs" id="1_ubiau"]
-[ext_resource type="Texture2D" uid="uid://qol0xsels3ss" path="res://images/doctor.png" id="2_lfec3"]
-[ext_resource type="Texture2D" uid="uid://c6db2a474glmo" path="res://images/basket.png" id="3_lcrm0"]
+[ext_resource type="Script" path="res://scripts/catcher/CatcherController.cs" id="1_glpar"]
+[ext_resource type="Texture2D" uid="uid://qol0xsels3ss" path="res://images/doctor.png" id="2_v6oj4"]
+[ext_resource type="Texture2D" uid="uid://c6db2a474glmo" path="res://images/basket.png" id="3_74ytw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt4rr"]
 size = Vector2(147, 145)
 
-[node name="catcher" type="Node2D"]
+[node name="Catcher" type="Node2D"]
 z_index = 100
-script = ExtResource("1_ubiau")
+script = ExtResource("1_glpar")
 moveSpeed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.209783, 0.211027)
-texture = ExtResource("2_lfec3")
+texture = ExtResource("2_v6oj4")
 
 [node name="Basket" type="Node2D" parent="."]
 
@@ -27,6 +27,6 @@ shape = SubResource("RectangleShape2D_yt4rr")
 [node name="Sprite2D" type="Sprite2D" parent="Basket"]
 position = Vector2(-172, 0)
 scale = Vector2(0.173256, 0.183962)
-texture = ExtResource("3_lcrm0")
+texture = ExtResource("3_74ytw")
 
 [connection signal="body_entered" from="Basket/Area2D" to="." method="BodyEntered"]
