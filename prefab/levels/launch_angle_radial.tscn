@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hn7t0u655yo"]
+
+[ext_resource type="Texture2D" uid="uid://0r4n77vd6vls" path="res://sprites/radial_over.png" id="1_6cg5f"]
+[ext_resource type="Texture2D" uid="uid://dpct2fgwokqun" path="res://sprites/radial_progress.png" id="2_psu3u"]
+
+[node name="LaunchAngleRadial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+value = 35.0
+fill_mode = 5
+texture_over = ExtResource("1_6cg5f")
+texture_progress = ExtResource("2_psu3u")
+texture_progress_offset = Vector2(2.08165e-12, 2.08165e-12)
+radial_initial_angle = 90.0
+radial_fill_degrees = 90.0
+radial_center_offset = Vector2(-100, 100)
