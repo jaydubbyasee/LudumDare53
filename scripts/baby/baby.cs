@@ -6,8 +6,8 @@ public partial class Baby : RigidBody2D
 	private float maxHeight;
 	private float maxDistance;
 
-	public float MaxHeight { get => maxHeight; set => maxHeight = value; }
-	public float MaxDistance { get => maxDistance; set => maxDistance = value; }
+	public float MaxHeight { get; set; }
+	public float MaxDistance { get; set; }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
