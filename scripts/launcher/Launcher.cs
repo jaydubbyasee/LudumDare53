@@ -40,6 +40,9 @@ public partial class Launcher : Node2D
 
 	[Export]
 	public float MaxLaunchPower { get; set; } = 100;
+	
+	[Export]
+	public float BabyAngularVelocity { get; set; } = 3.14f * 5;
 
 	private int _powerDirection = 1;
 	
@@ -133,6 +136,7 @@ public partial class Launcher : Node2D
 					var baby = _babyScene.Instantiate<Baby>();
 					GetParent().AddChild(baby);
 					baby.LinearVelocity = launchVector;
+					baby.AngularVelocity = BabyAngularVelocity;
 
 					EmitSignal(SignalName.OnBabyLaunched, baby);
 					GameManager.Instance.LaunchedBaby = baby;
