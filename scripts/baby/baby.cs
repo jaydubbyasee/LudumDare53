@@ -3,37 +3,40 @@ using System;
 
 public partial class Baby : RigidBody2D
 {
+	private float maxHeight;
+	private float maxDistance;
+
+	public float MaxHeight { get => maxHeight; set => maxHeight = value; }
+	public float MaxDistance { get => maxDistance; set => maxDistance = value; }
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		BodyShapeEntered += OnBodyShapeEntered;
-		BodyEntered += OnBodyEntered;
-	}
-
-	private void OnBodyEntered(Node body)
-	{
-		GD.Print("I Body Entered", body.Name);
-	}
-
-	private void OnBodyShapeEntered(Rid bodyRid, Node body, long bodyShapeIndex, long localShapeIndex)
-	{
-		GD.Print("I entered something!", body.Name);
+		MaxHeight = float.MaxValue;
+		MaxDistance = -float.MaxValue;
+		// Record the initial height of the baby here
+		// Take math.abs of initial - height (which is low since the highest height is 0
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		GD.Print(string.Format("Current Position: {0}", GlobalPosition));
+		// Coords start at the top left so the higher the object, the smaller the Y value
+		if (GlobalPosition.Y < MaxHeight)
+		{
+			MaxHeight = GlobalPosition.Y;
+		}
+		if (GlobalPosition.X > MaxDistance)
+		{
+			MaxDistance = GlobalPosition.X;
+		}
 	}
 
-	//private void OnBodyEntered(Node body)
-	//{
-	//	GD.Print("I entered something!", body.Name);
-	//}
-	//private void OnShapeEntered(Rid body_rid, Node body, long body_shape_index, long local_shape_index)
-	//{
-	//	GD.Print("My shape entered?");
-		 
-	//}
+	public void Destroy()
+	{
+		QueueFree();
+	}
 }
 
 

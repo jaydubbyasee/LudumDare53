@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpulqod72iti2"]
+
+[ext_resource type="Script" path="res://scripts/GameManager/GameManager.cs" id="1_o48vh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_po6bl"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_5e3yt"]
+font_size = 40
+
+[node name="GameManager" type="Node" node_paths=PackedStringArray("ScoreValueLabel")]
+script = ExtResource("1_o48vh")
+ScoreValueLabel = NodePath("UI/ScoreContainer/Score/ScoreValue")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 406.0
+offset_bottom = 135.0
+
+[node name="ScoreContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+offset_right = 307.0
+offset_bottom = 101.0
+
+[node name="Score" type="HBoxContainer" parent="UI/ScoreContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UI/ScoreContainer/Score"]
+layout_mode = 2
+text = "Score:"
+label_settings = SubResource("LabelSettings_po6bl")
+
+[node name="ScoreValue" type="Label" parent="UI/ScoreContainer/Score"]
+layout_mode = 2
+text = "9999999"
+label_settings = SubResource("LabelSettings_5e3yt")
