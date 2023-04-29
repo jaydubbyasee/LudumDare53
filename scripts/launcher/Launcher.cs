@@ -44,7 +44,7 @@ public partial class Launcher : Node2D
 	private int _powerDirection = 1;
 	
 	[Signal]
-	public delegate void OnBabyLaunchedEventHandler();
+	public delegate void OnBabyLaunchedEventHandler(Baby baby);
 
 	[Export()]
 	private PackedScene BabyScene;
@@ -114,11 +114,11 @@ public partial class Launcher : Node2D
 					GD.Print("LAUNCHING BABY");
 
 					var launchVector = GetBabyLaunchVector();
-					// TODO: instantiate babby, and set launch vector
-					EmitSignal(SignalName.OnBabyLaunched);
 					var baby = BabyScene.Instantiate<Baby>();
 					GetParent().AddChild(baby);
 					baby.LinearVelocity = launchVector;
+
+					EmitSignal(SignalName.OnBabyLaunched, baby);
 				}
 				
 				break;
