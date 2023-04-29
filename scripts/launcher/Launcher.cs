@@ -46,8 +46,8 @@ public partial class Launcher : Node2D
 	[Signal]
 	public delegate void OnBabyLaunchedEventHandler(Baby baby);
 
-	[Export()]
-	private PackedScene BabyScene;
+	[Export]
+	private PackedScene _babyScene;
 
 	public override void _Ready()
 	{
@@ -114,7 +114,7 @@ public partial class Launcher : Node2D
 					GD.Print("LAUNCHING BABY");
 
 					var launchVector = GetBabyLaunchVector();
-					var baby = BabyScene.Instantiate<Baby>();
+					var baby = _babyScene.Instantiate<Baby>();
 					GetParent().AddChild(baby);
 					baby.LinearVelocity = launchVector;
 
