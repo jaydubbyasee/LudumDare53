@@ -1,16 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpulqod72iti2"]
+[gd_scene load_steps=5 format=3 uid="uid://bpulqod72iti2"]
 
 [ext_resource type="Script" path="res://scripts/GameManager/GameManager.cs" id="1_o48vh"]
+[ext_resource type="LabelSettings" uid="uid://b4gm8r87um4di" path="res://ui/DefaultLabelSettings.tres" id="2_wusxx"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_po6bl"]
-font_size = 40
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i442"]
+bg_color = Color(0.258824, 0.666667, 0.721569, 1)
+skew = Vector2(-0.413, 0.055)
+shadow_size = 25
 
-[sub_resource type="LabelSettings" id="LabelSettings_5e3yt"]
-font_size = 40
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjwmb"]
+bg_color = Color(0.196078, 0.635294, 0.796078, 1)
+corner_radius_top_left = 100
+corner_radius_bottom_right = 100
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("ScoreValueLabel")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "GameOverPanel")]
 script = ExtResource("1_o48vh")
-ScoreValueLabel = NodePath("UI/ScoreContainer/Score/ScoreValue")
+BabyCount = 2
+ScoreValueLabel = NodePath("UI/ScorePanel/ScoreContainer/Score/ScoreValue")
+BabyCountLabel = NodePath("UI/ScorePanel/ScoreContainer/Baby/BabyValueLabel")
+GameOverPanel = NodePath("UI/GameOverPanel")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -18,20 +26,59 @@ anchors_preset = 0
 offset_right = 406.0
 offset_bottom = 135.0
 
-[node name="ScoreContainer" type="VBoxContainer" parent="UI"]
-layout_mode = 1
-offset_right = 307.0
-offset_bottom = 101.0
+[node name="ScorePanel" type="PanelContainer" parent="UI"]
+layout_mode = 2
+offset_left = 26.0
+offset_right = 524.0
+offset_bottom = 129.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i442")
 
-[node name="Score" type="HBoxContainer" parent="UI/ScoreContainer"]
+[node name="ScoreContainer" type="VBoxContainer" parent="UI/ScorePanel"]
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="UI/ScoreContainer/Score"]
+[node name="Score" type="HBoxContainer" parent="UI/ScorePanel/ScoreContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UI/ScorePanel/ScoreContainer/Score"]
 layout_mode = 2
 text = "Score:"
-label_settings = SubResource("LabelSettings_po6bl")
+label_settings = ExtResource("2_wusxx")
 
-[node name="ScoreValue" type="Label" parent="UI/ScoreContainer/Score"]
+[node name="ScoreValue" type="Label" parent="UI/ScorePanel/ScoreContainer/Score"]
 layout_mode = 2
 text = "9999999"
-label_settings = SubResource("LabelSettings_5e3yt")
+label_settings = ExtResource("2_wusxx")
+
+[node name="Baby" type="HBoxContainer" parent="UI/ScorePanel/ScoreContainer"]
+layout_mode = 2
+
+[node name="BabyLabel" type="Label" parent="UI/ScorePanel/ScoreContainer/Baby"]
+layout_mode = 2
+text = "Babies Remaining:"
+label_settings = ExtResource("2_wusxx")
+
+[node name="BabyValueLabel" type="Label" parent="UI/ScorePanel/ScoreContainer/Baby"]
+layout_mode = 2
+text = "999"
+label_settings = ExtResource("2_wusxx")
+
+[node name="GameOverPanel" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 614.0
+offset_top = 440.5
+offset_right = 1029.0
+offset_bottom = 660.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kjwmb")
+
+[node name="GameOverLabel" type="Label" parent="UI/GameOverPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "GAME OVER!"
+label_settings = ExtResource("2_wusxx")
