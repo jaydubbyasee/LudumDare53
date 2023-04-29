@@ -10,7 +10,7 @@ size = Vector2(147, 145)
 [node name="Catcher" type="Node2D"]
 z_index = 100
 script = ExtResource("1_glpar")
-moveSpeed = 100.0
+moveSpeed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.209783, 0.211027)
