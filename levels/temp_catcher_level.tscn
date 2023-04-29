@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=6 format=3 uid="uid://bjok0245hx5tq"]
 
 [ext_resource type="Texture2D" uid="uid://dyjwrctdypl5c" path="res://images/hospitalBackground.jpg" id="2_24pg1"]
@@ -12,6 +13,7 @@ position = Vector2(310, 207)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(644, 327)
 scale = Vector2(2.376, 2.2214)
+
 texture = ExtResource("2_24pg1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
