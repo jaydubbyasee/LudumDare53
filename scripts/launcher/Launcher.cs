@@ -54,7 +54,7 @@ public partial class Launcher : Node2D
 		_powerBar = GetNode<TextureProgressBar>("PowerBar");
 		_powerBar.MinValue = MinLaunchPower;
 		_powerBar.MaxValue = MaxLaunchPower;
-		//_powerBar.Hide();
+		_powerBar.Hide();
 	}
 
 	public override void _Process(double delta)
@@ -87,7 +87,7 @@ public partial class Launcher : Node2D
 					GD.Print($"Angle Selected: {LaunchAngle}");
 					GD.Print("accept");
 					CurrentLaunchState = LaunchState.POWER_SELECT;
-					//_powerBar.Show();
+					_powerBar.Show();
 				}
 				break;
 			case LaunchState.POWER_SELECT:
