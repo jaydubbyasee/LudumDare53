@@ -1,26 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjok0245hx5tq"]
 
-[ext_resource type="PackedScene" uid="uid://dg00w7qdxd0ys" path="res://prefabs/catcher/catcher.tscn" id="1_ecxtl"]
+[gd_scene load_steps=6 format=3 uid="uid://bjok0245hx5tq"]
+
 [ext_resource type="Texture2D" uid="uid://dyjwrctdypl5c" path="res://images/hospitalBackground.jpg" id="2_24pg1"]
-[ext_resource type="PackedScene" uid="uid://blqg7ji5473pk" path="res://prefabs/baby/baby.tscn" id="3_n251w"]
+[ext_resource type="PackedScene" uid="uid://dg00w7qdxd0ys" path="res://prefabs/catcher/Catcher.tscn" id="3_50juv"]
+[ext_resource type="PackedScene" uid="uid://bpulqod72iti2" path="res://prefabs/GameManager/GameManager.tscn" id="4_4352m"]
 [ext_resource type="PackedScene" uid="uid://cmf1xdwq3aeah" path="res://prefabs/launcher/launcher.tscn" id="4_rbjhc"]
+[ext_resource type="PackedScene" uid="uid://c3e7nmlar4jaq" path="res://prefabs/baby/baby.tscn" id="4_vf38y"]
 
 [node name="TempCatcherLevel" type="Node2D"]
-position = Vector2(579, 345)
-
-[node name="Launcher" parent="." instance=ExtResource("4_rbjhc")]
-BabyScene = ExtResource("3_n251w")
-
-[node name="catcher" parent="." instance=ExtResource("1_ecxtl")]
-position = Vector2(299, 123)
-moveSpeed = 200.0
+position = Vector2(310, 207)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(1.447, 1.447)
+position = Vector2(644, 327)
+scale = Vector2(2.376, 2.2214)
+
 texture = ExtResource("2_24pg1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(674, 347)
+zoom = Vector2(0.586, 0.586)
 
-[node name="baby" parent="." instance=ExtResource("3_n251w")]
-position = Vector2(-67, -270)
+[node name="Catcher" parent="." instance=ExtResource("3_50juv")]
+position = Vector2(1420, 652)
+
+[node name="GameManager" parent="." instance=ExtResource("4_4352m")]
+
+[node name="Baby" parent="." instance=ExtResource("4_vf38y")]
+position = Vector2(1252, -72)
+
+[node name="Launcher" parent="." instance=ExtResource("4_rbjhc")]
+_babyScene = ExtResource("4_vf38y")

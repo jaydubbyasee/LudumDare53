@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://blqg7ji5473pk"]
+[gd_scene load_steps=4 format=3 uid="uid://c3e7nmlar4jaq"]
 
 [ext_resource type="Script" path="res://scripts/baby/Baby.cs" id="1_3jlsn"]
 [ext_resource type="Texture2D" uid="uid://bj6ltsdai0jju" path="res://images/baby.jpg" id="1_b4bp7"]
