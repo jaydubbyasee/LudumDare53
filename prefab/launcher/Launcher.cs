@@ -3,6 +3,8 @@ using System;
 
 public partial class Launcher : Node2D
 {
+	private TextureProgressBar _launchAngleWidget;
+
 	public enum LaunchState
 	{
 		ANGLE_SELECT,
@@ -42,6 +44,18 @@ public partial class Launcher : Node2D
 	
 	[Signal]
 	public delegate void OnBabyLaunchedEventHandler();
+
+	public override void _Ready()
+	{
+		_launchAngleWidget = GetNode<TextureProgressBar>("LaunchAngleRadial");
+		_launchAngleWidget.MinValue = MinLaunchAngle;
+		_launchAngleWidget.MaxValue = MaxLaunchAngle;
+	}
+
+	public override void _Process(double delta)
+	{
+		_launchAngleWidget.Value = LaunchAngle;
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
@@ -90,7 +104,6 @@ public partial class Launcher : Node2D
 
 					var launchVector = GetBabyLaunchVector();
 					// TODO: instantiate babby, and set launch vector
-					
 					EmitSignal(SignalName.OnBabyLaunched);
 				}
 				
