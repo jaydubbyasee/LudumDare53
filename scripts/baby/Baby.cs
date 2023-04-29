@@ -21,7 +21,7 @@ public partial class Baby : RigidBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GD.Print(string.Format("Current Position: {0}", GlobalPosition));
+		//GD.Print(string.Format("Current Position: {0}", GlobalPosition));
 		// Coords start at the top left so the higher the object, the smaller the Y value
 		if (GlobalPosition.Y < MaxHeight)
 		{
