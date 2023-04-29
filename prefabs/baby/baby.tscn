@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6ujepqdfe283"]
 
 [ext_resource type="Script" path="res://scripts/baby/Baby.cs" id="1_3jlsn"]
-[ext_resource type="Texture2D" uid="uid://bj6ltsdai0jju" path="res://images/baby.jpg" id="1_b4bp7"]
+[ext_resource type="Texture2D" uid="uid://so6x742f5mxl" path="res://sprites/baby.png" id="2_w4hky"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p74wm"]
 size = Vector2(80, 80)
@@ -9,9 +9,10 @@ size = Vector2(80, 80)
 [node name="Baby" type="RigidBody2D" groups=["Baby"]]
 script = ExtResource("1_3jlsn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.222, 0.222)
-texture = ExtResource("1_b4bp7")
+[node name="BabySprite" type="Sprite2D" parent="."]
+texture_filter = 5
+scale = Vector2(2.504, 2.504)
+texture = ExtResource("2_w4hky")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p74wm")
