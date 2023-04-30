@@ -120,8 +120,8 @@ public partial class GameManager : Node2D
 			case GameState.End:
 				BGM.Stop();
 				if(playerScore > highScore) { highScore = playerScore; }
-				MaxDistanceLabel.Text = maxDistance.ToString();
-				MaxHeightLabel.Text = maxHeight.ToString();
+				MaxDistanceLabel.Text = maxDistance.ToString("F");
+				MaxHeightLabel.Text = maxHeight.ToString("F");
 				HighScoreLabel.Text = highScore.ToString();
 				GameOverPanel.Visible = true;
 				break;
