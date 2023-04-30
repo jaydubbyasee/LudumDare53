@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://b27dw3bbr5q0g"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.cs" id="1_ovxa0"]
+[ext_resource type="PackedScene" uid="uid://66y5d0u1an0k" path="res://levels/jmackey_temp_level.tscn" id="2_v7iqv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7mhm"]
+bg_color = Color(0.678431, 0.529412, 0.796078, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nih3n"]
+font_size = 137
+font_color = Color(0.396078, 0.435294, 0.827451, 1)
+outline_size = 32
+shadow_size = 48
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("PlayButton", "ExitButton")]
+script = ExtResource("1_ovxa0")
+PlayButton = NodePath("MainMenuUI/PanelContainer/VBoxContainer/HBoxContainer/PlayButton")
+ExitButton = NodePath("MainMenuUI/PanelContainer/VBoxContainer/HBoxContainer/ExitButton")
+PlayScene = ExtResource("2_v7iqv")
+
+[node name="MainMenuUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1157.0
+offset_bottom = 652.0
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenuUI"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1153.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b7mhm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuUI/PanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainMenuUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "BABY BLASTERS"
+label_settings = SubResource("LabelSettings_nih3n")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 183
+
+[node name="PlayButton" type="Button" parent="MainMenuUI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 70
+text = "PLAY"
+
+[node name="ExitButton" type="Button" parent="MainMenuUI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 76
+text = "EXIT"
