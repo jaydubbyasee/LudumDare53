@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg00w7qdxd0ys"]
+[gd_scene load_steps=5 format=3 uid="uid://f53nt24qot4x"]
 
 [ext_resource type="Script" path="res://scripts/catcher/CatcherController.cs" id="1_glpar"]
 [ext_resource type="Texture2D" uid="uid://beqvqvrqi5ggj" path="res://sprites/doctor.png" id="2_l1tvj"]
@@ -13,7 +13,7 @@ script = ExtResource("1_glpar")
 moveSpeed = 200.0
 
 [node name="DoctorSprite" type="Sprite2D" parent="."]
-z_index = 1
+z_index = -1
 texture_filter = 5
 position = Vector2(-37, -21)
 scale = Vector2(4.1462, 4.14651)
@@ -22,6 +22,7 @@ texture = ExtResource("2_l1tvj")
 [node name="Basket" type="Node2D" parent="."]
 
 [node name="BasketSprite" type="Sprite2D" parent="Basket"]
+z_index = -2
 texture_filter = 5
 position = Vector2(-174, 46)
 scale = Vector2(4.1462, 4.14651)
