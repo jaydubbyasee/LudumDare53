@@ -42,18 +42,12 @@ public partial class CatcherController : Node2D
 			// Update score here
 			GD.Print("Max Height was: ", baby.MaxHeight);
 			GD.Print("Max Distance was: ", baby.MaxDistance);
-			int score = CalcScore(baby.MaxHeight, baby.MaxDistance);
-			GameManager.Instance.UpdateScore(score);
+			//int score = CalcScore(baby.MaxHeight, baby.MaxDistance);
+			//GameManager.Instance.UpdateScore(score);
+			GameManager.Instance.SubmitBabyStats(baby.MaxDistance, baby.MaxHeight);
 			baby.Destroy();
 		}
 	}
 
-	private int CalcScore(float height, float distance)
-	{
-		// TODO: Figure out scoring
-		float heightScore = height / 2;
-		float distanceScore = distance / 2;
 
-		return (int)(heightScore + distanceScore);
-	}
 }

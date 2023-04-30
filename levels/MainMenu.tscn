@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b27dw3bbr5q0g"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.cs" id="1_ovxa0"]
-[ext_resource type="PackedScene" uid="uid://66y5d0u1an0k" path="res://levels/jmackey_temp_level.tscn" id="2_v7iqv"]
+[ext_resource type="PackedScene" uid="uid://dsnflrfxul5lf" path="res://levels/tilemap_level.tscn" id="2_3q03r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7mhm"]
 bg_color = Color(0.678431, 0.529412, 0.796078, 1)
@@ -17,7 +17,7 @@ shadow_color = Color(0, 0, 0, 1)
 script = ExtResource("1_ovxa0")
 PlayButton = NodePath("MainMenuUI/PanelContainer/VBoxContainer/HBoxContainer/PlayButton")
 ExitButton = NodePath("MainMenuUI/PanelContainer/VBoxContainer/HBoxContainer/ExitButton")
-PlayScene = ExtResource("2_v7iqv")
+PlayScene = ExtResource("2_3q03r")
 
 [node name="MainMenuUI" type="Control" parent="."]
 layout_mode = 3
