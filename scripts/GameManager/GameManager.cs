@@ -5,7 +5,7 @@ public partial class GameManager : Node2D
 {
 	[Export] public int BabyCount { get; set; }
 	public GameState CurrentState { get => currentState; set { currentState = value; GD.Print("Game State changed to: ", value); } }
-	public Baby LaunchedBaby { get; set; }
+	public Baby LaunchedBaby { get => launchedBaby; set { launchedBaby = value; if (value != null) { BabyLaunchSound.Play(); } } }
 	public Vector2 PlayerPosition { get; set; }
 
 	public static GameManager Instance;
@@ -29,6 +29,9 @@ public partial class GameManager : Node2D
 	[Export] private Vector2 LaunchCameraZoom;
 	[Export] private float CameraSpeed;
 	[Export] private float CameraZoomSpeed;
+	[Export] private AudioStreamPlayer2D BabyLaunchSound;
+	[Export] private AudioStreamPlayer2D BabyCatchSound;
+	[Export] private AudioStreamPlayer2D BGM;
 
 	private int playerScore;
 	private int babyCount;
@@ -60,6 +63,7 @@ public partial class GameManager : Node2D
 		initialBabyCount = BabyCount;
 		// TODO: Figure out state flow
 		CurrentState = GameState.Play;
+		BGM.Play();
 		playerScore = 0;
 	}
 
@@ -81,6 +85,7 @@ public partial class GameManager : Node2D
 				{
 					GD.Print("ENDING GAME");
 					CurrentState = GameState.End;
+					BGM.Stop();
 					GameOverPanel.Visible = true;
 				}
 			break;
@@ -96,17 +101,13 @@ public partial class GameManager : Node2D
 				Vector2 minPosition = -canvasTransform.Origin / canvasTransform.Scale;
 				Vector2 viewSize = GetViewportRect().Size / canvasTransform.Scale;
 				Vector2 maxPosition = minPosition + viewSize;
-				//GD.Print(minPosition, maxPosition);
-				//GD.Print("PlayerPosition: ", PlayerPosition);
-				//GD.Print("MaxPosition: ", maxPosition);
+
 				if (PlayerPosition.X < maxPosition.X && PlayerPosition.Y < maxPosition.Y)
 				{
-					GD.Print("PLAYER IS IN VIEW!");
 					Camera.Zoom = Camera.Zoom + new Vector2(CameraZoomSpeed, CameraZoomSpeed);
 				}
 				else
 				{
-					GD.Print("ZOOMING");
 					Camera.Zoom = Camera.Zoom - new Vector2(CameraZoomSpeed, CameraZoomSpeed);
 				}
 
@@ -121,6 +122,10 @@ public partial class GameManager : Node2D
 	}
 	public void UpdateScore(int amount)
 	{
+		if(amount > 0)
+		{
+			BabyCatchSound.Play();
+		}
 		playerScore += amount;
 	}
 
@@ -130,6 +135,7 @@ public partial class GameManager : Node2D
 		BabyCount = initialBabyCount;
 		GameOverPanel.Visible = false;
 		CurrentState = GameState.Play;
+		BGM.Play();
 	}
 	private void ExitGame()
 	{

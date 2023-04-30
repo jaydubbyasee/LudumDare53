@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://66y5d0u1an0k"]
 
 [ext_resource type="Texture2D" uid="uid://dyjwrctdypl5c" path="res://images/hospitalBackground.jpg" id="1_jc2qu"]
-[ext_resource type="PackedScene" uid="uid://f53nt24qot4x" path="res://prefabs/catcher/Catcher.tscn" id="2_v8iba"]
+[ext_resource type="PackedScene" uid="uid://f53nt24qot4x" path="res://prefabs/catcher/catcher.tscn" id="2_v8iba"]
 [ext_resource type="PackedScene" uid="uid://bpulqod72iti2" path="res://prefabs/GameManager/GameManager.tscn" id="3_skxry"]
 [ext_resource type="PackedScene" uid="uid://cmf1xdwq3aeah" path="res://prefabs/launcher/launcher.tscn" id="4_n0bm5"]
 [ext_resource type="PackedScene" uid="uid://c6ujepqdfe283" path="res://prefabs/baby/baby.tscn" id="5_j0cpn"]
