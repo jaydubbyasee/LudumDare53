@@ -4,6 +4,7 @@ using System;
 public partial class CatcherController : Node2D
 {
 	[Export] private float moveSpeed;
+	[Export] private Vector2 InitialPosition;
 	//private GameManager gameManager;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -17,6 +18,7 @@ public partial class CatcherController : Node2D
 	{
 		if(GameManager.Instance.CurrentState == GameManager.GameState.End)
 		{
+			GlobalPosition = InitialPosition;
 			return;
 		}
 		if (Input.IsActionPressed("MoveRight"))
