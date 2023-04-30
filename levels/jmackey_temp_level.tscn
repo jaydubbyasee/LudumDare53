@@ -15,14 +15,11 @@ position = Vector2(644, 327)
 scale = Vector2(2.376, 2.2214)
 texture = ExtResource("1_jc2qu")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(674, 347)
-zoom = Vector2(0.586, 0.586)
-
 [node name="Catcher" parent="." instance=ExtResource("2_v8iba")]
 position = Vector2(1420, 652)
 
 [node name="GameManager" parent="." instance=ExtResource("3_skxry")]
+position = Vector2(-286, -150)
 
 [node name="Launcher" parent="." instance=ExtResource("4_n0bm5")]
 position = Vector2(198, 446)

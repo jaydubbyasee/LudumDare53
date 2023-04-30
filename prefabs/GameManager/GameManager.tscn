@@ -13,7 +13,7 @@ bg_color = Color(0.196078, 0.635294, 0.796078, 1)
 corner_radius_top_left = 100
 corner_radius_bottom_right = 100
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "GameOverPanel", "RestartButton", "ExitButton")]
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "GameOverPanel", "RestartButton", "ExitButton", "Camera")]
 script = ExtResource("1_o48vh")
 BabyCount = 2
 ScoreValueLabel = NodePath("UI/ScorePanel/ScoreContainer/Score/ScoreValue")
@@ -21,6 +21,11 @@ BabyCountLabel = NodePath("UI/ScorePanel/ScoreContainer/Baby/BabyValueLabel")
 GameOverPanel = NodePath("UI/GameOverPanel")
 RestartButton = NodePath("UI/GameOverPanel/GameOverContainer/HBoxContainer/RestartButton")
 ExitButton = NodePath("UI/GameOverPanel/GameOverContainer/HBoxContainer/ExitButton")
+Camera = NodePath("Camera2D")
+LaunchCameraPosition = Vector2(1083, 591)
+LaunchCameraZoom = Vector2(0.5, 0.5)
+CameraSpeed = 10.0
+CameraZoomSpeed = 0.001
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -102,3 +107,7 @@ text = "RESTART"
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "EXIT"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1083, 591)
+zoom = Vector2(0.5, 0.5)
