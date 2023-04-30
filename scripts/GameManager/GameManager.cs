@@ -30,6 +30,7 @@ public partial class GameManager : Node2D
 	[Export] private float CameraSpeed;
 	[Export] private float CameraZoomSpeed;
 	[Export] private AudioStreamPlayer2D BabyLaunchSound;
+	[Export] private AudioStreamPlayer2D BabyMissSound;
 	[Export] private AudioStreamPlayer2D BabyCatchSound;
 	[Export] private AudioStreamPlayer2D BGM;
 
@@ -125,6 +126,9 @@ public partial class GameManager : Node2D
 		if(amount > 0)
 		{
 			BabyCatchSound.Play();
+		} else
+		{
+			BabyMissSound.Play();
 		}
 		playerScore += amount;
 	}

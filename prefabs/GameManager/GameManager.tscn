@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpulqod72iti2"]
+[gd_scene load_steps=9 format=3 uid="uid://bpulqod72iti2"]
 
 [ext_resource type="Script" path="res://scripts/GameManager/GameManager.cs" id="1_o48vh"]
 [ext_resource type="LabelSettings" uid="uid://b4gm8r87um4di" path="res://ui/DefaultLabelSettings.tres" id="2_wusxx"]
 [ext_resource type="AudioStream" uid="uid://dq5yondx2vq62" path="res://Sounds/BabyLaunch.wav" id="3_22a7k"]
 [ext_resource type="AudioStream" uid="uid://btch8f0ye3rv8" path="res://Sounds/BabyCatch.wav" id="4_mx8jh"]
+[ext_resource type="AudioStream" uid="uid://cwtfmrl0stmog" path="res://Sounds/BabyMiss.wav" id="5_6a8v8"]
 [ext_resource type="AudioStream" uid="uid://uahd0lb5vkr2" path="res://Sounds/BGM.wav" id="5_dyke8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i442"]
@@ -16,7 +17,7 @@ bg_color = Color(0.196078, 0.635294, 0.796078, 1)
 corner_radius_top_left = 100
 corner_radius_bottom_right = 100
 
-[node name="GameManager" type="Node2D" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "GameOverPanel", "RestartButton", "ExitButton", "Camera", "BabyLaunchSound", "BabyCatchSound", "BGM")]
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "GameOverPanel", "RestartButton", "ExitButton", "Camera", "BabyLaunchSound", "BabyMissSound", "BabyCatchSound", "BGM")]
 script = ExtResource("1_o48vh")
 BabyCount = 2
 ScoreValueLabel = NodePath("UI/ScorePanel/ScoreContainer/Score/ScoreValue")
@@ -30,6 +31,7 @@ LaunchCameraZoom = Vector2(0.5, 0.5)
 CameraSpeed = 10.0
 CameraZoomSpeed = 0.001
 BabyLaunchSound = NodePath("BabyLaunch")
+BabyMissSound = NodePath("BabyMiss")
 BabyCatchSound = NodePath("BabyCatch")
 BGM = NodePath("BGM")
 
@@ -124,6 +126,10 @@ stream = ExtResource("3_22a7k")
 
 [node name="BabyCatch" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_mx8jh")
+volume_db = 5.622
+
+[node name="BabyMiss" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6a8v8")
 volume_db = 5.622
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
