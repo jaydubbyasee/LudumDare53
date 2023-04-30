@@ -122,11 +122,13 @@ texture = ExtResource("2_q1m8j")
 position = Vector2(1380, 738)
 scale = Vector2(0.75, 0.75)
 
-[node name="Launcher" parent="." instance=ExtResource("9_f07i0")]
-position = Vector2(648, 701)
-scale = Vector2(0.5, 0.5)
+[node name="Launcher" parent="." node_paths=PackedStringArray("Spawnpoint") instance=ExtResource("9_f07i0")]
+position = Vector2(357, 569)
+AngleSelectSpeed = 150.0
+LaunchPowerSelectSpeed = 150.0
 LaunchPower = 5.0
 _babyScene = ExtResource("10_vkebi")
+Spawnpoint = NodePath("../BabySpawnpoint")
 
 [node name="Background" type="Node2D" parent="."]
 z_index = -5
@@ -226,3 +228,6 @@ texture = ExtResource("3_10q7i")
 [node name="Boundaries" parent="." instance=ExtResource("11_afws7")]
 position = Vector2(-669, 929)
 scale = Vector2(5, 5)
+
+[node name="BabySpawnpoint" type="Node2D" parent="."]
+position = Vector2(-33, 701)
