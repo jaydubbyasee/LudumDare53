@@ -27,6 +27,7 @@ public partial class CatcherController : Node2D
 		{
 			GlobalPosition = new Vector2(GlobalPosition.X - (moveSpeed * Convert.ToSingle(delta)), GlobalPosition.Y);
 		}
+		GameManager.Instance.PlayerPosition = GlobalPosition;
 	}
 	
 	private void BodyEntered(Node2D body)

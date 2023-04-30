@@ -86,6 +86,10 @@ public partial class Launcher : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
+		if (GameManager.Instance.CurrentState == GameManager.GameState.End)
+		{
+			return;
+		}
 		switch (CurrentLaunchState)
 		{
 			case LaunchState.ANGLE_SELECT:

@@ -1,11 +1,12 @@
 using Godot;
 using System;
 
-public partial class GameManager : Node
+public partial class GameManager : Node2D
 {
 	[Export] public int BabyCount { get; set; }
 	public GameState CurrentState { get => currentState; set { currentState = value; GD.Print("Game State changed to: ", value); } }
 	public Baby LaunchedBaby { get; set; }
+	public Vector2 PlayerPosition { get; set; }
 
 	public static GameManager Instance;
 
@@ -23,10 +24,16 @@ public partial class GameManager : Node
 	[Export] private PanelContainer GameOverPanel;
 	[Export] private Button RestartButton;
 	[Export] private Button ExitButton;
+	[Export] private Camera2D Camera;
+	[Export] private Vector2 LaunchCameraPosition;
+	[Export] private Vector2 LaunchCameraZoom;
+	[Export] private float CameraSpeed;
+	[Export] private float CameraZoomSpeed;
 
 	private int playerScore;
 	private int babyCount;
 	private int initialBabyCount;
+	private Vector2 playerPosition;
 	private GameState currentState;
 	private Baby launchedBaby;
 
@@ -47,6 +54,9 @@ public partial class GameManager : Node
 		RestartButton.ButtonDown += RestartGame;
 		ExitButton.ButtonDown += ExitGame;
 
+		Camera.PositionSmoothingEnabled = true;
+		Camera.PositionSmoothingSpeed = CameraSpeed;
+
 		initialBabyCount = BabyCount;
 		// TODO: Figure out state flow
 		CurrentState = GameState.Play;
@@ -60,6 +70,8 @@ public partial class GameManager : Node
 		switch (CurrentState)
 		{
 			case GameState.Play:
+				Camera.GlobalPosition = LaunchCameraPosition;
+				Camera.Zoom = new Vector2(LaunchCameraZoom.X, LaunchCameraZoom.Y);
 				if (IsInstanceValid(LaunchedBaby))
 				{
 					CurrentState = GameState.Waiting;
@@ -73,12 +85,31 @@ public partial class GameManager : Node
 				}
 			break;
 
-			case GameState.Waiting:
+			case GameState.Waiting:	
 				if(!IsInstanceValid(LaunchedBaby))
 				{
 					CurrentState = GameState.Play;
 					return;
 				}
+				Camera.GlobalPosition = LaunchedBaby.GlobalPosition;
+				Transform2D canvasTransform = GetCanvasTransform();
+				Vector2 minPosition = -canvasTransform.Origin / canvasTransform.Scale;
+				Vector2 viewSize = GetViewportRect().Size / canvasTransform.Scale;
+				Vector2 maxPosition = minPosition + viewSize;
+				//GD.Print(minPosition, maxPosition);
+				//GD.Print("PlayerPosition: ", PlayerPosition);
+				//GD.Print("MaxPosition: ", maxPosition);
+				if (PlayerPosition.X < maxPosition.X && PlayerPosition.Y < maxPosition.Y)
+				{
+					GD.Print("PLAYER IS IN VIEW!");
+					Camera.Zoom = Camera.Zoom + new Vector2(CameraZoomSpeed, CameraZoomSpeed);
+				}
+				else
+				{
+					GD.Print("ZOOMING");
+					Camera.Zoom = Camera.Zoom - new Vector2(CameraZoomSpeed, CameraZoomSpeed);
+				}
+
 			break;
 		}
 		
