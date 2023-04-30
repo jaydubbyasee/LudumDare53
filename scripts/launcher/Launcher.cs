@@ -51,6 +51,9 @@ public partial class Launcher : Node2D
 
 	[Export]
 	private PackedScene _babyScene;
+	
+	[Export]
+	public Node2D Spawnpoint { get; set; }
 
 
 
@@ -138,9 +141,11 @@ public partial class Launcher : Node2D
 					GameManager.Instance.BabyCount -= 1;
 					var launchVector = GetBabyLaunchVector();
 					var baby = _babyScene.Instantiate<Baby>();
-					GetParent().AddChild(baby);
+					baby.Position = Spawnpoint.Position;
 					baby.LinearVelocity = launchVector;
 					baby.AngularVelocity = BabyAngularVelocity;
+
+					GetParent().AddChild(baby);
 
 					EmitSignal(SignalName.OnBabyLaunched, baby);
 					GameManager.Instance.LaunchedBaby = baby;
