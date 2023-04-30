@@ -17,14 +17,17 @@ bg_color = Color(0.196078, 0.635294, 0.796078, 1)
 corner_radius_top_left = 100
 corner_radius_bottom_right = 100
 
-[node name="GameManager" type="Node2D" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "GameOverPanel", "RestartButton", "ExitButton", "Camera", "BabyLaunchSound", "BabyMissSound", "BabyCatchSound", "BGM")]
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "HighScoreLabel", "MaxDistanceLabel", "MaxHeightLabel", "GameOverPanel", "RestartButton", "ExitButton", "Camera", "BabyLaunchSound", "BabyMissSound", "BabyCatchSound", "BGM")]
 script = ExtResource("1_o48vh")
 BabyCount = 2
 ScoreValueLabel = NodePath("UI/ScorePanel/ScoreContainer/Score/ScoreValue")
 BabyCountLabel = NodePath("UI/ScorePanel/ScoreContainer/Baby/BabyValueLabel")
+HighScoreLabel = NodePath("UI/GameOverPanel/GameOverContainer/HighScore/HighScoreValue")
+MaxDistanceLabel = NodePath("UI/GameOverPanel/GameOverContainer/StatsScore/DistanceValue")
+MaxHeightLabel = NodePath("UI/GameOverPanel/GameOverContainer/StatsScore/HeightValue")
 GameOverPanel = NodePath("UI/GameOverPanel")
-RestartButton = NodePath("UI/GameOverPanel/GameOverContainer/HBoxContainer/RestartButton")
-ExitButton = NodePath("UI/GameOverPanel/GameOverContainer/HBoxContainer/ExitButton")
+RestartButton = NodePath("UI/GameOverPanel/GameOverContainer/Buttons/RestartButton")
+ExitButton = NodePath("UI/GameOverPanel/GameOverContainer/Buttons/ExitButton")
 Camera = NodePath("Camera2D")
 LaunchCameraPosition = Vector2(1083, 591)
 LaunchCameraZoom = Vector2(0.5, 0.5)
@@ -104,18 +107,60 @@ size_flags_horizontal = 4
 text = "GAME OVER!"
 label_settings = ExtResource("2_wusxx")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/GameOverPanel/GameOverContainer"]
+[node name="Buttons" type="HBoxContainer" parent="UI/GameOverPanel/GameOverContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 90
 
-[node name="RestartButton" type="Button" parent="UI/GameOverPanel/GameOverContainer/HBoxContainer"]
+[node name="RestartButton" type="Button" parent="UI/GameOverPanel/GameOverContainer/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "RESTART"
 
-[node name="ExitButton" type="Button" parent="UI/GameOverPanel/GameOverContainer/HBoxContainer"]
+[node name="ExitButton" type="Button" parent="UI/GameOverPanel/GameOverContainer/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "EXIT"
+
+[node name="StatsScore" type="HBoxContainer" parent="UI/GameOverPanel/GameOverContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="DistanceLabel" type="Label" parent="UI/GameOverPanel/GameOverContainer/StatsScore"]
+layout_mode = 2
+text = "MAX DISTANCE:"
+label_settings = ExtResource("2_wusxx")
+
+[node name="DistanceValue" type="Label" parent="UI/GameOverPanel/GameOverContainer/StatsScore"]
+layout_mode = 2
+text = "9999"
+label_settings = ExtResource("2_wusxx")
+
+[node name="HeightLabel" type="Label" parent="UI/GameOverPanel/GameOverContainer/StatsScore"]
+layout_mode = 2
+text = "Max Height:"
+label_settings = ExtResource("2_wusxx")
+
+[node name="HeightValue" type="Label" parent="UI/GameOverPanel/GameOverContainer/StatsScore"]
+layout_mode = 2
+text = "99999"
+label_settings = ExtResource("2_wusxx")
+
+[node name="HighScore" type="HBoxContainer" parent="UI/GameOverPanel/GameOverContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="HighScoreLabel" type="Label" parent="UI/GameOverPanel/GameOverContainer/HighScore"]
+layout_mode = 2
+text = "HIGH SCORE:"
+label_settings = ExtResource("2_wusxx")
+
+[node name="HighScoreValue" type="Label" parent="UI/GameOverPanel/GameOverContainer/HighScore"]
+layout_mode = 2
+text = "9999999"
+label_settings = ExtResource("2_wusxx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1083, 591)
@@ -135,4 +180,3 @@ volume_db = 5.622
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_dyke8")
 volume_db = 2.0
-autoplay = true

@@ -21,6 +21,9 @@ public partial class GameManager : Node2D
 
 	[Export] private Label ScoreValueLabel;
 	[Export] private Label BabyCountLabel;
+	[Export] private Label HighScoreLabel;
+	[Export] private Label MaxDistanceLabel;
+	[Export] private Label MaxHeightLabel;
 	[Export] private PanelContainer GameOverPanel;
 	[Export] private Button RestartButton;
 	[Export] private Button ExitButton;
@@ -35,6 +38,9 @@ public partial class GameManager : Node2D
 	[Export] private AudioStreamPlayer2D BGM;
 
 	private int playerScore;
+	private int highScore;
+	private float maxDistance;
+	private float maxHeight;
 	private int babyCount;
 	private int initialBabyCount;
 	private Vector2 playerPosition;
@@ -62,7 +68,7 @@ public partial class GameManager : Node2D
 		Camera.PositionSmoothingSpeed = CameraSpeed;
 
 		initialBabyCount = BabyCount;
-		// TODO: Figure out state flow
+
 		CurrentState = GameState.Play;
 		BGM.Play();
 		playerScore = 0;
@@ -84,10 +90,8 @@ public partial class GameManager : Node2D
 				}
 				if (BabyCount <= 0)
 				{
-					GD.Print("ENDING GAME");
 					CurrentState = GameState.End;
-					BGM.Stop();
-					GameOverPanel.Visible = true;
+					return;
 				}
 			break;
 
@@ -113,6 +117,14 @@ public partial class GameManager : Node2D
 				}
 
 			break;
+			case GameState.End:
+				BGM.Stop();
+				if(playerScore > highScore) { highScore = playerScore; }
+				MaxDistanceLabel.Text = maxDistance.ToString();
+				MaxHeightLabel.Text = maxHeight.ToString();
+				HighScoreLabel.Text = highScore.ToString();
+				GameOverPanel.Visible = true;
+				break;
 		}
 		
 	}
@@ -132,7 +144,21 @@ public partial class GameManager : Node2D
 		}
 		playerScore += amount;
 	}
+	public void SubmitBabyStats(float distance, float height)
+	{
+		GD.Print("Submitted baby stats: ", distance, height);
+		if(distance > maxDistance) { maxDistance = distance; }
+		if(height > maxHeight) { maxHeight = height; }
+		playerScore = CalcScore(distance, height);
+	}
+	private int CalcScore(float distance, float height)
+	{
+		// TODO: Figure out scoring
+		float heightScore = height / 2;
+		float distanceScore = distance / 2;
 
+		return (int)(heightScore + distanceScore);
+	}
 	private void RestartGame()
 	{
 		playerScore = 0;
