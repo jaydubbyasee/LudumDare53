@@ -13,10 +13,10 @@ texture = ExtResource("3_bdf8x")
 modulate_color = Color(0.792157, 0.823529, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nih3n"]
-font_size = 137
+font_size = 84
 font_color = Color(0.396078, 0.435294, 0.827451, 1)
-outline_size = 32
-shadow_size = 48
+outline_size = 14
+shadow_size = 39
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("PlayButton", "ExitButton")]
@@ -45,7 +45,8 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MainMenuUI/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "BABY BLASTERS"
+text = "Mother's Day:
+     Requiem"
 label_settings = SubResource("LabelSettings_nih3n")
 metadata/_edit_use_anchors_ = true
 
@@ -73,7 +74,7 @@ scale = Vector2(4.45918, 3.40625)
 texture = ExtResource("4_64wwt")
 
 [node name="Baby" type="Sprite2D" parent="MainMenuUI/PanelContainer/VBoxContainer"]
-position = Vector2(419.327, 388.75)
+position = Vector2(475, 424)
 rotation = 0.66148
 scale = Vector2(4.29209, 3.48438)
 texture = ExtResource("5_e3wqx")
