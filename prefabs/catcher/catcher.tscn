@@ -10,7 +10,7 @@ size = Vector2(174.5, 78)
 [node name="Catcher" type="Node2D"]
 z_index = 100
 script = ExtResource("1_glpar")
-moveSpeed = 500.0
+moveSpeed = 800.0
 InitialPosition = Vector2(1380, 738)
 
 [node name="DoctorSprite" type="Sprite2D" parent="."]

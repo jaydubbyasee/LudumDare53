@@ -19,7 +19,7 @@ corner_radius_bottom_right = 100
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("ScoreValueLabel", "BabyCountLabel", "HighScoreLabel", "MaxDistanceLabel", "MaxHeightLabel", "GameOverPanel", "RestartButton", "ExitButton", "Camera", "BabyLaunchSound", "BabyMissSound", "BabyCatchSound", "BGM")]
 script = ExtResource("1_o48vh")
-BabyCount = 2
+BabyCount = 8
 ScoreValueLabel = NodePath("UI/ScorePanel/ScoreContainer/Score/ScoreValue")
 BabyCountLabel = NodePath("UI/ScorePanel/ScoreContainer/Baby/BabyValueLabel")
 HighScoreLabel = NodePath("UI/GameOverPanel/GameOverContainer/HighScore/HighScoreValue")

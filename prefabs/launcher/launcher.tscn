@@ -15,6 +15,7 @@ script = ExtResource("1_pfopx")
 offset_left = -382.0
 
 [node name="PanelContainer" type="PanelContainer" parent="LaunchAngleRadial"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 183.0
 offset_right = 126.0
